@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 // Get your free access key at: https://web3forms.com/
 // Replace this with your actual access key
 const WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
 
 const ContactForm = () => {
+  const [headerRef, headerVisible] = useScrollAnimation({ threshold: 0.2 });
+  const [contentRef, contentVisible] = useScrollAnimation({ threshold: 0.1 });
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -73,7 +77,12 @@ const ContactForm = () => {
     <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-10 sm:mb-16">
+        <div
+          ref={headerRef}
+          className={`text-center mb-10 sm:mb-16 transition-all duration-700 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-50 text-blue-700 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
             Get Started
           </div>
@@ -85,7 +94,12 @@ const ContactForm = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-6 sm:gap-8">
+        <div
+          ref={contentRef}
+          className={`grid lg:grid-cols-5 gap-6 sm:gap-8 transition-all duration-700 delay-200 ${
+            contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           {/* Contact Info Sidebar - horizontal scroll on mobile */}
           <div className="lg:col-span-2 space-y-4 sm:space-y-6">
             {/* Quick Contact Cards - horizontal on mobile */}
@@ -186,7 +200,7 @@ const ContactForm = () => {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-gray-200 focus:border-blue-600 focus:outline-none transition text-sm sm:text-base"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-gray-200 focus:border-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-600/10 transition-all duration-300 text-sm sm:text-base"
                         placeholder="John Doe"
                       />
                     </div>
@@ -202,7 +216,7 @@ const ContactForm = () => {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-gray-200 focus:border-blue-600 focus:outline-none transition text-sm sm:text-base"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-gray-200 focus:border-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-600/10 transition-all duration-300 text-sm sm:text-base"
                         placeholder="john@example.com"
                       />
                     </div>
@@ -220,7 +234,7 @@ const ContactForm = () => {
                         required
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-gray-200 focus:border-blue-600 focus:outline-none transition text-sm sm:text-base"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-gray-200 focus:border-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-600/10 transition-all duration-300 text-sm sm:text-base"
                         placeholder="(123) 456-7890"
                       />
                     </div>
@@ -235,7 +249,7 @@ const ContactForm = () => {
                         name="moveDate"
                         value={formData.moveDate}
                         onChange={handleChange}
-                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-gray-200 focus:border-blue-600 focus:outline-none transition text-sm sm:text-base"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-gray-200 focus:border-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-600/10 transition-all duration-300 text-sm sm:text-base"
                       />
                     </div>
                   </div>
@@ -250,7 +264,7 @@ const ContactForm = () => {
                       required
                       value={formData.moveType}
                       onChange={handleChange}
-                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-gray-200 focus:border-blue-600 focus:outline-none transition text-sm sm:text-base"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-gray-200 focus:border-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-600/10 transition-all duration-300 text-sm sm:text-base"
                     >
                       <option value="residential">Residential Moving</option>
                       <option value="commercial">Commercial Moving</option>
@@ -271,7 +285,7 @@ const ContactForm = () => {
                       rows="3"
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-gray-200 focus:border-blue-600 focus:outline-none transition resize-none text-sm sm:text-base"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 border-gray-200 focus:border-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-600/10 transition-all duration-300 resize-none text-sm sm:text-base"
                       placeholder="Tell us more about your move requirements..."
                     ></textarea>
                   </div>
@@ -285,7 +299,7 @@ const ContactForm = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 sm:py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors text-base sm:text-lg disabled:bg-blue-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-base sm:text-lg disabled:from-blue-400 disabled:to-blue-400 disabled:cursor-not-allowed flex items-center justify-center gap-2 shine-effect shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/30 hover:-translate-y-0.5"
                   >
                     {isSubmitting ? (
                       <>

@@ -1,4 +1,8 @@
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
 const TeamSection = () => {
+  const [sectionRef, isVisible] = useScrollAnimation({ threshold: 0.2 });
+
   const features = [
     {
       icon: (
@@ -39,11 +43,19 @@ const TeamSection = () => {
   ];
 
   return (
-    <section id="team" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white">
+    <section
+      ref={sectionRef}
+      id="team"
+      className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image Side */}
-          <div className="relative order-2 lg:order-1">
+          <div
+            className={`relative order-2 lg:order-1 transition-all duration-1000 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
+            }`}
+          >
             <div className="relative">
               <img
                 src="/image3.png"
@@ -59,7 +71,11 @@ const TeamSection = () => {
           </div>
 
           {/* Content Side */}
-          <div className="order-1 lg:order-2">
+          <div
+            className={`order-1 lg:order-2 transition-all duration-1000 delay-200 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
+            }`}
+          >
             <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-600 text-white rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
               Why Choose Us
             </div>

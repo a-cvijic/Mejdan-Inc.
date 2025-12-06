@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useCountUp } from '../hooks/useScrollAnimation';
 
 // Word-by-word animated text for the main headline
 const AnimatedHeadline = ({ words, delay = 0, className = '' }) => {
@@ -24,6 +25,19 @@ const AnimatedHeadline = ({ words, delay = 0, className = '' }) => {
         </span>
       ))}
     </span>
+  );
+};
+
+const AnimatedCounter = ({ end, suffix = '', label }) => {
+  const [ref, count] = useCountUp(end, 2000);
+
+  return (
+    <div ref={ref} className="stat-item group cursor-pointer text-center sm:text-left">
+      <div className="text-2xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-br from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-blue-800 transition-all duration-300">
+        {count}{suffix}
+      </div>
+      <div className="text-xs sm:text-sm text-gray-500 mt-1 sm:mt-2 font-medium uppercase tracking-wide">{label}</div>
+    </div>
   );
 };
 
@@ -171,20 +185,11 @@ const Hero = () => {
               </a>
             </div>
 
-            {/* Stats */}
+            {/* Stats with animated counters */}
             <div className="grid grid-cols-3 gap-4 sm:gap-8 pt-6 sm:pt-8 border-t border-gray-200">
-              <div className="stat-item group cursor-pointer text-center sm:text-left">
-                <div className="text-2xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-br from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-blue-800 transition-all duration-300">500+</div>
-                <div className="text-xs sm:text-sm text-gray-500 mt-1 sm:mt-2 font-medium uppercase tracking-wide">Customers</div>
-              </div>
-              <div className="stat-item group cursor-pointer text-center sm:text-left">
-                <div className="text-2xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-br from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-blue-800 transition-all duration-300">10+</div>
-                <div className="text-xs sm:text-sm text-gray-500 mt-1 sm:mt-2 font-medium uppercase tracking-wide">Years</div>
-              </div>
-              <div className="stat-item group cursor-pointer text-center sm:text-left">
-                <div className="text-2xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-br from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-blue-800 transition-all duration-300">5.0</div>
-                <div className="text-xs sm:text-sm text-gray-500 mt-1 sm:mt-2 font-medium uppercase tracking-wide">Rating</div>
-              </div>
+              <AnimatedCounter end={500} suffix="+" label="Customers" />
+              <AnimatedCounter end={10} suffix="+" label="Years" />
+              <AnimatedCounter end={5} suffix=".0" label="Rating" />
             </div>
           </div>
 

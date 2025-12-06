@@ -1,7 +1,11 @@
 import { useState } from 'react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Services = () => {
   const [activeService, setActiveService] = useState(null);
+  const [headerRef, headerVisible] = useScrollAnimation({ threshold: 0.2 });
+  const [gridRef, gridVisible] = useScrollAnimation({ threshold: 0.1 });
+  const [ctaRef, ctaVisible] = useScrollAnimation({ threshold: 0.3 });
 
   const services = [
     {
@@ -70,7 +74,12 @@ const Services = () => {
     <section id="services" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-b from-white via-blue-50 to-white">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="max-w-2xl mb-10 sm:mb-16">
+        <div
+          ref={headerRef}
+          className={`max-w-2xl mb-10 sm:mb-16 transition-all duration-700 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-50 text-blue-700 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
             Our Services
           </div>
@@ -85,17 +94,18 @@ const Services = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {services.map((service, index) => (
             <div
               key={index}
               onMouseEnter={() => setActiveService(index)}
               onMouseLeave={() => setActiveService(null)}
-              className={`group relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-8 transition-all duration-300 border-2 ${
+              className={`group relative bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-5 sm:p-8 transition-all duration-500 border-2 ${
                 activeService === index
-                  ? 'border-blue-600 shadow-xl -translate-y-1'
-                  : 'border-gray-200 hover:border-gray-300 shadow-sm'
-              }`}
+                  ? 'border-blue-600 shadow-xl shadow-blue-600/10 -translate-y-2 scale-[1.02]'
+                  : 'border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-lg'
+              } ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: gridVisible ? `${index * 100}ms` : '0ms' }}
             >
               {/* Icon */}
               <div className={`w-12 sm:w-14 h-12 sm:h-14 rounded-lg sm:rounded-xl flex items-center justify-center mb-4 sm:mb-6 transition-colors ${
@@ -130,7 +140,12 @@ const Services = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-10 sm:mt-16 bg-gray-900 rounded-xl sm:rounded-2xl p-6 sm:p-12 text-center">
+        <div
+          ref={ctaRef}
+          className={`mt-10 sm:mt-16 bg-gray-900 rounded-xl sm:rounded-2xl p-6 sm:p-12 text-center transition-all duration-700 ${
+            ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4">
             Need Help Choosing a Service?
           </h3>

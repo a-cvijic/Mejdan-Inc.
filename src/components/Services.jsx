@@ -67,58 +67,58 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-24 px-6 bg-gradient-to-b from-white via-blue-50 to-white">
+    <section id="services" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-b from-white via-blue-50 to-white">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="max-w-2xl mb-16">
-          <div className="inline-block px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-4">
+        <div className="max-w-2xl mb-10 sm:mb-16">
+          <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-50 text-blue-700 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
             Our Services
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-3 sm:mb-4">
             Everything You Need
             <br />
             For Your Move
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-base sm:text-lg text-gray-600">
             Comprehensive solutions tailored to make your relocation seamless and stress-free.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {services.map((service, index) => (
             <div
               key={index}
               onMouseEnter={() => setActiveService(index)}
               onMouseLeave={() => setActiveService(null)}
-              className={`group relative bg-white rounded-2xl p-8 transition-all duration-300 border-2 ${
+              className={`group relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-8 transition-all duration-300 border-2 ${
                 activeService === index
                   ? 'border-blue-600 shadow-xl -translate-y-1'
                   : 'border-gray-200 hover:border-gray-300 shadow-sm'
               }`}
             >
               {/* Icon */}
-              <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-colors ${
+              <div className={`w-12 sm:w-14 h-12 sm:h-14 rounded-lg sm:rounded-xl flex items-center justify-center mb-4 sm:mb-6 transition-colors ${
                 activeService === index ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'
               }`}>
                 {service.icon}
               </div>
 
               {/* Title */}
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
                 {service.description}
               </p>
 
               {/* Features */}
-              <ul className="space-y-2">
+              <ul className="space-y-1.5 sm:space-y-2">
                 {service.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center text-sm text-gray-700">
-                    <svg className="w-4 h-4 mr-2 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                  <li key={idx} className="flex items-center text-xs sm:text-sm text-gray-700">
+                    <svg className="w-3.5 sm:w-4 h-3.5 sm:h-4 mr-2 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                     {feature}
@@ -130,16 +130,16 @@ const Services = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 bg-gray-900 rounded-2xl p-12 text-center">
-          <h3 className="text-3xl font-bold text-white mb-4">
+        <div className="mt-10 sm:mt-16 bg-gray-900 rounded-xl sm:rounded-2xl p-6 sm:p-12 text-center">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4">
             Need Help Choosing a Service?
           </h3>
-          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-gray-300 text-sm sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
             Our moving experts are ready to assess your needs and recommend the perfect solution.
           </p>
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors inline-flex items-center space-x-2"
+            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors inline-flex items-center justify-center space-x-2"
           >
             <span>Speak with an Expert</span>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

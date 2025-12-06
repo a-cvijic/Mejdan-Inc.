@@ -39,52 +39,52 @@ const TeamSection = () => {
   ];
 
   return (
-    <section id="team" className="py-24 px-6 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white">
+    <section id="team" className="py-16 sm:py-24 px-4 sm:px-6 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image Side */}
           <div className="relative order-2 lg:order-1">
             <div className="relative">
               <img
                 src="/image3.png"
                 alt="Mejdan Inc. Professional Team"
-                className="rounded-2xl shadow-2xl w-full"
+                className="rounded-xl sm:rounded-2xl shadow-2xl w-full"
               />
-              {/* Stats Overlay */}
-              <div className="absolute -bottom-8 -right-8 bg-blue-600 text-white rounded-2xl p-6 shadow-xl">
-                <div className="text-4xl font-black mb-1">500+</div>
-                <div className="text-sm opacity-90">Successful Moves</div>
+              {/* Stats Overlay - repositioned for mobile */}
+              <div className="absolute -bottom-4 right-4 sm:-bottom-8 sm:-right-8 bg-blue-600 text-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-xl">
+                <div className="text-2xl sm:text-4xl font-black mb-0.5 sm:mb-1">500+</div>
+                <div className="text-xs sm:text-sm opacity-90">Successful Moves</div>
               </div>
             </div>
           </div>
 
           {/* Content Side */}
           <div className="order-1 lg:order-2">
-            <div className="inline-block px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-semibold mb-4">
+            <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-600 text-white rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
               Why Choose Us
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4 sm:mb-6">
               Your Move,
               <br />
               Our Priority
             </h2>
 
-            <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8 leading-relaxed">
               With over a decade of experience serving NYC, we've perfected the art of moving.
               Our team treats your belongings with the same care we'd give our own.
             </p>
 
             {/* Features Grid */}
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               {features.map((feature, index) => (
-                <div key={index} className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
+                <div key={index} className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
                     {feature.icon}
                   </div>
                   <div>
-                    <h4 className="font-bold text-white mb-1">{feature.title}</h4>
-                    <p className="text-sm text-gray-300">{feature.description}</p>
+                    <h4 className="font-bold text-white text-sm sm:text-base mb-0.5 sm:mb-1">{feature.title}</h4>
+                    <p className="text-xs sm:text-sm text-gray-300">{feature.description}</p>
                   </div>
                 </div>
               ))}
